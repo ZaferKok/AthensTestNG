@@ -7,6 +7,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import java.util.concurrent.TimeUnit;
+
 public class Testbase {
 
     protected WebDriver driver;
@@ -17,6 +19,7 @@ public class Testbase {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
+     //   driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         System.out.println("TestNG");
         actions = new Actions(driver);
     }
@@ -24,6 +27,6 @@ public class Testbase {
     @AfterMethod
     public void kapanis(){
         driver.close();
-        System.out.println("Ben son çalışırım: After");
+        System.out.println("Ben son çalışırım: Testimiz tamamlanmıştır!");
     }
 }
