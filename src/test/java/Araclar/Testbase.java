@@ -19,14 +19,14 @@ public class Testbase {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-     //   driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         System.out.println("TestNG");
         actions = new Actions(driver);
     }
 
     @AfterMethod
     public void kapanis(){
-        driver.close();
+        //driver.close();
         System.out.println("Ben son çalışırım: Testimiz tamamlanmıştır!");
     }
 }

@@ -27,7 +27,10 @@ public class Enable extends Testbase {
 
         WebElement textBox = driver.findElement(By.xpath("//input[@type='text']"));
         boolean isEnable = textBox.isEnabled();
-        Assert.assertTrue(isEnable);
+        int sayi = 3;
+        boolean durum = true;
+        boolean durum2 = false;
+        Assert.assertFalse(isEnable);
 
         // isEnable => elementin aktif işlem yapılabilir olup olmadığını sorugular. Sonuç True yada False'dur.
         // isSelected => radio button veya checkbox'ın seçili olup olmadığını sorgular.

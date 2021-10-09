@@ -113,5 +113,4 @@ public class Action extends Testbase {
         actions.doubleClick(searchBox).perform();
         Thread.sleep(2000);
     }
-
 }

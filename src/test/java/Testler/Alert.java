@@ -1,10 +1,17 @@
 package Testler;
 
 import Araclar.Testbase;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.concurrent.TimeUnit;
 
 public class Alert extends Testbase {
     /*
@@ -15,7 +22,21 @@ public class Alert extends Testbase {
     Create a @BeforeMethod
     Go to https://demoqa.com/alerts
      */
+    @BeforeMethod
+    public void acilis() {
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        System.out.println("TestNG");
+        actions = new Actions(driver);
+    }
 
+    @AfterMethod
+    public void kapanis(){
+        //driver.close();
+        System.out.println("Ben son çalışırım: Testimiz tamamlanmıştır!");
+    }
     @Test
     public void acceptAlert() throws InterruptedException {
         driver.get("https://demoqa.com/alerts");
