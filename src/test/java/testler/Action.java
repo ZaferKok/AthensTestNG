@@ -1,16 +1,15 @@
-package Testler;
+package testler;
 
-import Araclar.Testbase;
+import araclar.Driver;
+import araclar.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import sun.awt.windows.ThemeReader;
 
-public class Action extends Testbase {
+public class Action extends TestBase {
 //    Create a class: ActionsClassExample
 //    Create a test method : contextClickMethod() and test the following scenario:
 //    Given user is on the https://the-internet.herokuapp.com/context_menu
@@ -21,13 +20,13 @@ public class Action extends Testbase {
     @Test
     public void rightClick(){
 
-        driver.get("https://the-internet.herokuapp.com/context_menu");
+        Driver.getDriver().get("https://the-internet.herokuapp.com/context_menu");
 
-        WebElement box = driver.findElement(By.id("hot-spot"));
+        WebElement box = Driver.getDriver().findElement(By.id("hot-spot"));
         actions.contextClick(box).perform();
-        String actualText = driver.switchTo().alert().getText();
+        String actualText = Driver.getDriver().switchTo().alert().getText();
         Assert.assertEquals(actualText,"You selected a context menu");
-        driver.switchTo().alert().accept();
+        Driver.getDriver().switchTo().alert().accept();
     }
     //    Create a method in the same class: keysUpDown()
     //    Go to google
@@ -37,9 +36,9 @@ public class Action extends Testbase {
     @Test
     public void keyUpDown() throws InterruptedException {
 
-        driver.get("https://www.ebay.de/");
+        Driver.getDriver().get("https://www.ebay.de/");
 
-        WebElement searchBox = driver.findElement(By.name("_nkw"));
+        WebElement searchBox = Driver.getDriver().findElement(By.name("_nkw"));
         //searchBox.sendKeys("iphone x prices");
         // 1.Yöntem
         // searchBox.sendKeys(Keys.SHIFT + "iphone x prices");
@@ -56,7 +55,7 @@ public class Action extends Testbase {
     @Test
     public void scrollUpDown() throws InterruptedException {
 
-        driver.get("https://www.ebay.de/");
+        Driver.getDriver().get("https://www.ebay.de/");
 
         actions.sendKeys(Keys.PAGE_DOWN).perform();
         Thread.sleep(1000);
@@ -84,21 +83,21 @@ public class Action extends Testbase {
 
         SoftAssert softAssert = new SoftAssert();
 
-    driver.get("https://www.amazon.com/");
-    WebElement signInBox = driver.findElement(By.cssSelector("a#nav-link-accountList"));
+        Driver.getDriver().get("https://www.amazon.com/");
+    WebElement signInBox =     Driver.getDriver().findElement(By.cssSelector("a#nav-link-accountList"));
     actions.moveToElement(signInBox).perform();
     Thread.sleep(1000);
-    WebElement myAccount = driver.findElement(By.xpath("(//*[contains(text(),'Account')])[4]"));
+    WebElement myAccount =     Driver.getDriver().findElement(By.xpath("(//*[contains(text(),'Account')])[4]"));
     myAccount.click();
     Thread.sleep(1000);
-    WebElement title = driver.findElement(By.xpath("(//*[contains(text(),'Your Account')])[4]"));
+    WebElement title =     Driver.getDriver().findElement(By.xpath("(//*[contains(text(),'Your Account')])[4]"));
     String actualTitle = title.getText();
     String expectedTitle = "Your Account";
 
         softAssert.assertTrue(actualTitle.contains(expectedTitle));
 
     Thread.sleep(1000);
-        String actualTitle2 = driver.getTitle();
+        String actualTitle2 =     Driver.getDriver().getTitle();
 
       softAssert.assertTrue(actualTitle2.contains("Your Account"));
 
@@ -107,8 +106,8 @@ public class Action extends Testbase {
     @Test
     public void doubleClick() throws InterruptedException {
 
-        driver.get("https://www.amazon.com/");
-        WebElement searchBox = driver.findElement(By.id("twotabsearchtextbox"));
+        Driver.getDriver().get("https://www.amazon.com/");
+        WebElement searchBox = Driver.getDriver().findElement(By.id("twotabsearchtextbox"));
         searchBox.sendKeys("Computer");
         actions.doubleClick(searchBox).perform();
         Thread.sleep(2000);

@@ -1,6 +1,5 @@
-package Testler;
+package testler;
 
-import Araclar.Testbase;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

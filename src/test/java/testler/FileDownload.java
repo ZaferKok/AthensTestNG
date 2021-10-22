@@ -1,6 +1,7 @@
-package Testler;
+package testler;
 
-import Araclar.Testbase;
+import araclar.Driver;
+import araclar.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -9,7 +10,7 @@ import org.testng.annotations.Test;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class FileDownload extends Testbase {
+public class FileDownload extends TestBase {
 
     @Test
     public void isExistTest(){
@@ -30,9 +31,9 @@ public class FileDownload extends Testbase {
     @Test
     public void downloadTest() throws InterruptedException {
 
-        driver.get("https://the-internet.herokuapp.com/download");
+        Driver.getDriver().get("https://the-internet.herokuapp.com/download");
 
-        WebElement resimLink1 = driver.findElement(By.xpath("//*[contains(text(),'puppy_and_kitten')]"));
+        WebElement resimLink1 = Driver.getDriver().findElement(By.xpath("//*[contains(text(),'puppy_and_kitten')]"));
         resimLink1.click();
         Thread.sleep(3000);
 

@@ -1,4 +1,4 @@
-package Testler;
+package testler;
 
 import org.testng.Assert;
 import org.testng.annotations.Ignore;

@@ -1,6 +1,7 @@
-package Testler;
+package testler;
 
-import Araclar.Testbase;
+import araclar.Driver;
+import araclar.TestBase;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -13,7 +14,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class Alert extends Testbase {
+public class Alert extends TestBase {
     /*
     Create 3 methods
     1. acceptAlert
@@ -24,12 +25,12 @@ public class Alert extends Testbase {
      */
     @BeforeMethod
     public void acilis() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//        WebDriverManager.chromedriver().setup();
+//        driver = new ChromeDriver();
+        Driver.getDriver().manage().window().maximize();
+        Driver.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         System.out.println("TestNG");
-        actions = new Actions(driver);
+        actions = new Actions(Driver.getDriver());
     }
 
     @AfterMethod
@@ -39,37 +40,37 @@ public class Alert extends Testbase {
     }
     @Test
     public void acceptAlert() throws InterruptedException {
-        driver.get("https://demoqa.com/alerts");
-        WebElement click1 = driver.findElement(By.id("alertButton"));
+        Driver.getDriver().get("https://demoqa.com/alerts");
+        WebElement click1 = Driver.getDriver().findElement(By.id("alertButton"));
         click1.click();
         Thread.sleep(2000);
-        driver.switchTo().alert().accept();
+        Driver.getDriver().switchTo().alert().accept();
         Thread.sleep(2000);
     }
     @Test
     public void confirmAlert() throws InterruptedException {
-        driver.get("https://demoqa.com/alerts");
-        WebElement click3 = driver.findElement(By.id("confirmButton"));
+        Driver.getDriver().get("https://demoqa.com/alerts");
+        WebElement click3 = Driver.getDriver().findElement(By.id("confirmButton"));
         click3.click();
         Thread.sleep(1000);
-        driver.switchTo().alert().dismiss();
+        Driver.getDriver().switchTo().alert().dismiss();
         Thread.sleep(1000);
-        WebElement text1 = driver.findElement(By.xpath("//*[contains(text(),'You selected ')]"));
+        WebElement text1 = Driver.getDriver().findElement(By.xpath("//*[contains(text(),'You selected ')]"));
         Thread.sleep(1000);
         System.out.println(text1.getText());
         Assert.assertEquals(text1.getText(),"You selected Cancel");
     }
     @Test
     public void sendMessageAlert() throws InterruptedException {
-        driver.get("https://demoqa.com/alerts");
-        WebElement click4 = driver.findElement(By.id("promtButton"));
+        Driver.getDriver().get("https://demoqa.com/alerts");
+        WebElement click4 = Driver.getDriver().findElement(By.id("promtButton"));
         click4.click();
         Thread.sleep(1000);
-        driver.switchTo().alert().sendKeys("Athens");
+        Driver.getDriver().switchTo().alert().sendKeys("Athens");
         Thread.sleep(3000);
-        driver.switchTo().alert().accept();
+        Driver.getDriver().switchTo().alert().accept();
         Thread.sleep(1000);
-        WebElement text2 = driver.findElement(By.xpath("//*[contains(text(),'You entered ')]"));
+        WebElement text2 = Driver.getDriver().findElement(By.xpath("//*[contains(text(),'You entered ')]"));
         Thread.sleep(1000);
         System.out.println(text2.getText());
         Assert.assertEquals(text2.getText(),"You entered Athens");
